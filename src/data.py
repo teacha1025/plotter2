@@ -4,10 +4,10 @@ from curve import curve
 from point import point
 
 color_list = ['#000000', '#ff0000', '#0000ff', '#00ff00', '#ff8000', '#800080', '#808080', '#00ffff', '#ff00ff']
-color_name = ['黒', '赤', '青', '緑', 'オレンジ', '紫', '灰', '水色', 'ピンク']
+color_name = ['Black', 'Red', 'Blue', 'Green', 'Orange', 'Purple', 'Gray', 'Cyan', 'Magenta']
 
 marker_list = ['', '.', 'o', 'v', '^', '<', '>', 'x', '+', 'd', '|', '-']
-marker_name = ['無し', '・', '〇', '▽', '△', '◁', '▷', '×', '+', '◇', '|', '-']
+marker_name = ['None', '・', '〇', '▽', '△', '◁', '▷', '×', '+', '◇', '|', '-']
 
 axis_type = ['x', 'y1', 'y2', 'y3']
 yaxis_type = ['y1', 'y2', 'y3']
@@ -15,7 +15,7 @@ axis_id = [-1,0,1,2]
 
 curve_list = ['None', 'PolyLine', 'Liner', 'PolyNomial', 'Log', 'Exponetial', 'Power', 'Moving Average']
 line_list = ['-', '--', '-.', ':']
-line_name = ['-', '--', '-・', '・・']
+line_name = ['―――', '‐ ‐', '－・－', '・・・']
 
 
         

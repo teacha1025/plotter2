@@ -47,18 +47,36 @@ class figure:
                 if(self.axes[i].enable == True):
                     self.axes[i].set(self.x_axis)
             
+            h = []
+            l = []
+            for i in range(3):
+                _h, _l = self.axes[i].data.get_legend_handles_labels()
+                h.append(_h)
+                l.append(_l)
+            
+            _h = h[0]
+            _l = l[0]
+            for i in range(1, len(h)):
+                if self.axes[i].enable == True:
+                    _h += h[i]
+                    _l += l[i]
+
+            plt.legend(_h, _l, fontsize=24, frameon=False)
+            
             plt.tight_layout()
             self.canvas.draw()
             
-            for i in range(2):
+            for i in range(1, 3):
                 #self.axes[i+1].data = self.figure.add_subplot(111)
-                self.axes[i+1].data.cla()
-                self.axes[i+1].enable = False
+                self.axes[i].data.cla()
+                self.axes[i].enable = False
             
         def plot(self, d:data):
-            if(d.id < 0):
+            if d.id < 0:
                 return
-            if(d.axis < 0 or d.axis > 2):
+            if d.axis < 0 or d.axis > 2:
+                return
+            if d.enable == False:
                 return
             
             if(self.axes[d.axis].enable == False):
@@ -67,8 +85,26 @@ class figure:
                 self.axes[d.axis].enable = True
             
             x, y = d.get()
+            np_x = np.array(x, dtype=np.float64)
+            np_y = np.array(y, dtype=np.float64)
+            if d.legend == True:
+                if d.curve.type != 0:
+                    _x, _y = d.curve.calc(d.data, self.x_axis.range)
+                    np__x = np.array(_x, dtype=np.float64)
+                    np__y = np.array(_y, dtype=np.float64)
+                    self.axes[d.axis].data.plot(np__x, np__y, color=color_list[d.color], marker='', linestyle=line_list[d.curve.line], linewidth=1, label = d.label, zorder = 1)
+                    self.axes[d.axis].data.scatter(np_x, np_y, color=color_list[d.color], marker=marker_list[d.marker], zorder = 2)
+                else :    
+                    self.axes[d.axis].data.scatter(np_x, np_y, color=color_list[d.color], marker=marker_list[d.marker], label = d.label, zorder = 2)
+            else:
+                if d.curve.type != 0:
+                    _x, _y = d.curve.calc(d.data, self.x_axis.range)
+                    np__x = np.array(_x, dtype=np.float64)
+                    np__y = np.array(_y, dtype=np.float64)
+                    self.axes[d.axis].data.plot(np__x, np__y, color=color_list[d.color], marker='', linestyle=line_list[d.curve.line], linewidth=1, zorder = 1)
+                    self.axes[d.axis].data.scatter(np_x, np_y, color=color_list[d.color], marker=marker_list[d.marker], zorder = 2)
+
+                else :    
+                    self.axes[d.axis].data.scatter(np_x, np_y, color=color_list[d.color], marker=marker_list[d.marker], zorder = 2)
+
             
-            if d.curve.type != 0:
-                _x, _y = d.curve.calc(d.data, self.x_axis.range)
-                self.axes[d.axis].data.plot(np.array(_x, dtype=np.float64), np.array(_y, dtype=np.float64), color=color_list[d.color], marker='', linestyle=line_list[d.curve.line], linewidth=2)
-            self.axes[d.axis].data.scatter(np.array(x, dtype=np.float64), np.array(y, dtype=np.float64), color=color_list[d.color], marker=marker_list[d.marker])
