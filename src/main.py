@@ -37,7 +37,7 @@ class main_window:
                 break
             
             elif event == '-open-':
-                path = eg.popup_get_file(title='Select file', file_types=[('CSV file', '*.csv, *.tsv')], multiple_files=False)
+                path = eg.popup_get_file(title='Select file', file_types=[('CSV file', '*.csv *.tsv')], multiple_files=False)
                 if path != None and path != '':
                     d = process_data(path)
                     self.dataset.set(d)

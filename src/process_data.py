@@ -29,14 +29,16 @@ def process_data(path : str) -> list[data]:
         for i in range(1, len(data_list)):
             d = data(i-1, labels[i])
             for j in range(len(x)):
-                y = 0.0
+                _x = 0.0
+                _y = 0.0
                 try:
-                    y = float(data_list[i][j])
+                    _x = float(x[j])
+                    _y = float(data_list[i][j])
                 except:
                     continue
                 p = point()
-                p.x = x[j]
-                p.y = y
+                p.x = _x
+                p.y = _y
                 d.add(p)
             d.axis = 0
             ret.append(d)

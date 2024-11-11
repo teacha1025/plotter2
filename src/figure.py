@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from axis import axis
-from data import data, color_list, marker_list
+from data import data, color_list, marker_list, line_list
 from ranges import ranges
 
 class figure:
@@ -68,4 +68,7 @@ class figure:
             
             x, y = d.get()
             
-            self.axes[d.axis].data.plot(np.array(x, dtype=np.float64), np.array(y, dtype=np.float64), color=color_list[d.color], marker=marker_list[d.marker])
+            if d.curve.type != 0:
+                _x, _y = d.curve.calc(d.data, self.x_axis.range)
+                self.axes[d.axis].data.plot(np.array(_x, dtype=np.float64), np.array(_y, dtype=np.float64), color=color_list[d.color], marker='', linestyle=line_list[d.curve.line], linewidth=2)
+            self.axes[d.axis].data.scatter(np.array(x, dtype=np.float64), np.array(y, dtype=np.float64), color=color_list[d.color], marker=marker_list[d.marker])
