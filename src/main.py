@@ -1,9 +1,7 @@
 import TkEasyGUI as eg
 import figure
-import data
-from data import data, data_wizard, point, axis_type
+from data import data_wizard, axis_type
 from axis import axis_wizard
-from ranges import ranges
 from process_data import process_data
 from dataset import dataset
 
@@ -29,7 +27,6 @@ class main_window:
         self.fig = figure.figure(self.window['-CANVAS-'].TKCanvas)
 
     def update(self):
-        # figとCanvasを関連付ける
         while True:
             event, values = self.window.read()
 
@@ -57,9 +54,9 @@ class main_window:
                 
             elif event == '-save-':
                 title = eg.popup_get_file(title="Select file to save", save_as=True)     
-                    
+                if title != None and title != '':
+                    pass 
                 self.fig.figure.savefig(title)
-                print('save')
                 
             
             elif event == '-axis_edit-':
@@ -90,38 +87,8 @@ class main_window:
 
         self.window.close()
         
+        
 main = main_window()
-
-
-
-
-# class new_window:
-#     def __init__(self):
-#         layout = [[
-#             eg.Text('New Window'),eg.Checkbox('Check', key='-check-')
-#         ]]
-        
-#         self.window = eg.Window('New Window', layout, finalize=True)
-        
-#     def update(self):
-#         while True:
-#             event, values = self.window.read()
-            
-#             if event in (None, eg.WINDOW_CLOSED):
-#                 break
-            
-#         self.window.close()
-
-# window = eg.Window('Plot', [[eg.Button("Button", key = "-button-")]], finalize=True)
-
-# while True:
-#     event, values = window.read()
-#     if event in (None, eg.WINDOW_CLOSED):
-#         break
-#     elif event == "-button-":
-#         new = new_window()
-#         new.update()
-# window.close()
 
 if __name__ == '__main__':
     main.update()

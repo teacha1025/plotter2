@@ -1,12 +1,9 @@
-import TkEasyGUI as eg
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from axis import axis
 from data import data, color_list, marker_list, line_list
-from ranges import ranges
 
 class figure:
         def createCanvas(self, window_canvas):
@@ -18,14 +15,10 @@ class figure:
             plt.rcParams["font.family"] = "Times New Roman"
             plt.rcParams['mathtext.fontset'] = 'stix'
 
-            # 全体のフォントサイズの設定
             plt.rcParams["font.size"] = 24
 
-            # グラフ目盛りの内向き設定
             plt.rcParams['xtick.direction'] = 'in'
-            plt.rcParams['ytick.direction'] = 'in'
-            plt.legend(fontsize=24,frameon=False)
-            
+            plt.rcParams['ytick.direction'] = 'in'         
             
             self.figure = plt.figure(figsize=(8, 6))
             
@@ -67,7 +60,6 @@ class figure:
             self.canvas.draw()
             
             for i in range(1, 3):
-                #self.axes[i+1].data = self.figure.add_subplot(111)
                 self.axes[i].data.cla()
                 self.axes[i].enable = False
             
