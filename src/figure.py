@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.backends.backend_pdf
+import matplotlib.backends.backend_svg
 
 from axis import axis
 from data import data, color_list, marker_list, line_list
