@@ -16,9 +16,9 @@ class main_window:
         ]),
         eg.Frame('',[
             [eg.Text('Axis Edit')],
-            [eg.Combo(axis_type, default_value=axis_type[0], key='-axis_edit_combo-'), eg.Button('Edit', key='-axis_edit-')],
+            [eg.Combo(axis_type, default_value=axis_type[0], key='-axis_edit_combo-', readonly=True), eg.Button('Edit', key='-axis_edit-')],
             [eg.Text('Data Edit')],
-            [eg.Combo(self.dataset.labels, default_value=self.dataset.labels[0], key='-data_edit_combo-'), eg.Button('Edit', key='-data_edit-')],
+            [eg.Combo(self.dataset.labels, default_value=self.dataset.labels[0], key='-data_edit_combo-', readonly=True), eg.Button('Edit', key='-data_edit-')],
         ])     
         ]]
 
